@@ -1,0 +1,55 @@
+.formGroup {
+  formGroup: True;
+}
+
+.formInput {
+  composes: baseTextArea from 'sharedStyles/styles.css';
+  border-width: 0;
+}
+
+.newTicketTop {
+  background: #fff;
+  padding: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1877E6;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.newTicketInputContainer {
+  composes: baseTextAreaContainer from 'sharedStyles/styles.css';
+}
+
+.newTicketInputSmallContainer {
+  composes: baseTextAreaContainer from 'sharedStyles/styles.css';
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.newTicketInput {
+  composes: baseTextArea from 'sharedStyles/styles.css';
+  border-width: 0;
+}
+
+.darkBtn {
+  composes: darkBtn from 'sharedStyles/styles.css';
+  text-decoration: none;
+}
+
+.submitTicketBtn {
+  composes: darkBtn;
+  margin: 0px auto;
+  width: 150px;
+  text-align: center;
+  display: block;
+}
+
+.submitTicketBtn:disabled {
+  background: #C6C6C6;
+  border: 1px solid #C6C6C6;
+}
