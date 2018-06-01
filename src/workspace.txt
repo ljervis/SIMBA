@@ -1,0 +1,102 @@
+Allow donations on site => have doners who match dollar for dollar be charged until their max
+
+FE form data, input amount click "donate" => sends to BE server POST /donate?amount=X&user=jon
+  => BE SERVER /donate reference database username => add to user's total amount donated
+    => doner match, linear search on all users in the database if donerMatch = true, add the amount from previous request to all doners total amount donated
+
+
+
+Firebase
+  /uid
+    {
+      totalDonated: int,
+      isMatchingDonations: boolean,
+      maxAmountMatching: int,
+    }
+
+
+1) Dollar for dollar match from each donation
+
+2) X amount of dollars per donor
+  {
+    Everytime someone donates, add perDonorDonation: 100 to totalDonated for each donor
+  }
+
+3) Some number of dollars per dollar (multiplier on top of 1)) <= default multiplier to 1
+{ ..., donationMultiplier: 100 }
+
+{
+  ...,
+  donationMultiplier: 1 <== default,
+  perDonorDonation: 100 <== added to that donor's totalAmountDonated everytime someone donates
+}
+
+
+{
+	"donors": {
+		"donor1": {
+			"totalDonated": 0,
+			"maxAmountMatching": 1000000,
+			"isMatchingDonations": true,
+			"donationMatchingType": "DOLLAR",
+			"dollarMultiplier": 2,
+			"perDonorDonation": 0
+		},
+		"donor2": {
+			"totalDonated": 0,
+			"maxAmountMatching": 1000000,
+			"isMatchingDonations": true,
+			"donationMatchingType": "NONE",
+			"dollarMultiplier": 10,
+			"perDonorDonation": 0
+		},
+		"donor3": {
+			"totalDonated": 0,
+			"maxAmountMatching": 10000,
+			"isMatchingDonations": true,
+			"donationMatchingType": "NONE",
+			"dollarMultiplier": 1,
+			"perDonorDonation": 1000
+		},
+		"donor6": {
+			"totalDonated": 0,
+			"maxAmountMatching": 10000000,
+			"isMatchingDonations": true,
+			"donationMatchingTypes": [],
+			"dollarMultiplier": 10,
+			"perDonorDonation": 1000
+		},
+    "donor7": {
+			"totalDonated": 0,
+			"maxAmountMatching": 10000000,
+			"isMatchingDonations": false,
+			"donationMatchingTypes": [],
+			"dollarMultiplier": 10,
+			"perDonorDonation": 1000
+		},
+    "donor8": {
+			"totalDonated": 0,
+			"maxAmountMatching": 10,
+			"isMatchingDonations": true,
+			"donationMatchingTypes": ["DOLLAR"],
+			"dollarMultiplier": 10,
+			"perDonorDonation": 1000
+		},
+
+
+	}
+}
+
+100
+
+donor1: 200
+donor2: 1000
+donor3: 1000
+donor4: 2000
+
+Create Match Donor:
+  - isMatching: boolean
+  - Donation Matching Types (checkboxes) -> DOLLAR, DONOR
+  - MULTIPLIER ENTRY FIELD
+  - PER DONOR DONATION ENTRY FIELD
+  - MAX AMOUNT MATCHING
