@@ -1,15 +1,15 @@
+# File: superheroes.py
+
 import firebase_admin
 from firebase_admin import db
 import flask
 
 app = flask.Flask(__name__)
 
-# cred = credentials.Certificate('simba-282ca-firebase-adminsdk-jnel4-8eb31c91a6.json')
-
 firebase_admin.initialize_app(options={
     'databaseURL': 'https://simba-282ca.firebaseio.com/'
 })
-SUPERHEROES = db.reference('superheroes')
+SUPERHEROES = db.reference('')
 
 @app.route('/heroes', methods=['POST'])
 def create_hero():
